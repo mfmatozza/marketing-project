@@ -1,0 +1,5 @@
+LICENSE / ATTRIBUTION NOTICE — 01_LG_Electronics_Appliances
+
+electronics_market_behavior.csv is derived from an open e-commerce behaviour dataset published by the REES46 Marketing Platform (rees46.com) for research and educational use. It is reproduced here with attribution, subsetted and anonymised for teaching.
+
+appliance_brand_reviews.csv is derived from the Amazon Reviews 2023 collection (McAuley Lab, UC San Diego). Its authors ask that any use be credited to: Hou, Y., Li, J., He, Z., Yan, A., Chen, X., & McAuley, J. (2024). Bridging Language and Items for Retrieval and Recommendation. arXiv:2403.03952. The subset is provided for non-commercial teaching only; do not redistribute.
