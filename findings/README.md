@@ -7,7 +7,7 @@
 | `figures/chart2_odds_ratios.png` | Chart 2: odds ratios with 95% CI, sorted (all brands) |
 | `figures/chart3_lg_vs_competitors.png` | Chart 3: LG vs competitors, share of 1-2 star reviews mentioning each issue |
 | `figures/chart4_priority_matrix.png` | Chart 4: priority matrix (LG frequency vs LG-only odds ratio). Top-right = fix first |
-| `figures/chart5_refrigerator_replication.png` | Chart 5: only appears once `or_refrigerator.csv` exists (see below) |
+| `figures/chart5_refrigerator_replication.png` | Chart 5: refrigerator replication, laundry vs fridge odds ratios |
 | `quotes.md` | 9 short anonymous LG quotes, 3 per top issue |
 
 If the tags or the model change, rerun the notebook (Run All, under 1 minute). Every number and chart title updates by itself.
@@ -42,11 +42,21 @@ These are facts to write from, not the section text. The report rule is that eac
    | Return / refund | 4.95 | 9% | rare but harmful |
 
    The chart title focuses on support + repair to match the two recommended pilots. → Chart 4
-5. **Robustness** (notebook 03, Angelo): support, returns, breakdowns and repair stay significant with 1-star only, 2016+, verified only and OLS. → refer to his table. A refrigerator replication would be chart 5.
+5. **Robustness** (notebook 03, Angelo): support, returns, breakdowns and repair stay significant with 1-star only, 2016+, verified only and OLS. → refer to his table.
+6. **Replication on refrigerators** (n = 4,381, same cleaning and tags as laundry, run in notebook 04):
+   - Customer support: OR 4.87 [3.26-7.27]
+   - Repair / technician: OR 3.59 [2.94-4.38]
+   - Breakdown / reliability: OR 4.70 [3.73-5.93]
+   - Return / refund: OR 6.99 [4.02-12.14]
+   - All p < 0.001. The service effect is not specific to laundry. → Chart 5
+   - Differences from laundry: delivery / install hurts for fridges (OR 2.88), and drying clothes is left out (only 2 fridge reviews mention it). Year enters as a linear trend, because there is only one 2007 review.
+7. **Interaction support × LG** (laundry main model + `a_support:is_lg` + `a_repair_service:is_lg`):
+   - Support × LG: OR 1.84 [0.78-4.33], p = 0.165, **not significant**.
+   - Repair × LG: OR 0.90, p = 0.65.
+   - A support mention does not hurt LG's rating significantly more than a competitor's. LG's gap is that support comes up **more often** (22% vs 13%, finding 3), not that each mention hurts more. Use "more often", not "hurts LG more".
 
 The old tutorial headline "delivery/installation 19% vs 12%" is gone after the tag clean-up. It is now 1.0% vs 1.3% and not significant, so don't use it.
 
 ## Waiting on others
-- **Angelo, refrigerator replication.** Save his main-model odds ratios as `findings/or_refrigerator.csv` with columns `attribute,OR,lo,hi,p` (attribute = `a_support`, ...), then rerun 04. Chart 5 is drawn automatically. Check the title still holds.
-- **Angelo, interaction `a_support × is_lg`.** Its OR and p-value would confirm finding 3 inside the model. Send the number.
+- **Angelo, check.** The fridge replication and the interaction (findings 6-7) were run in notebook 04 with notebooks 01-02's code unchanged. Notebooks 01-03 were not modified. He should check them before using them in the Method section.
 - **Noemi, tags.** `repair_service` still contains plain `parts` (`\bparts?\b` in notebook 02), which the task breakdown said to drop. If she changes it, rerun 04.
